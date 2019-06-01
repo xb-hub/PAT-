@@ -10,6 +10,7 @@ linux和windows在命令行模式下输入命令:
 ```
 * ./test
 ```
-# PAT-Basic-Level-Practice-
+# PAT-Advanced-Level-Practice-
 ## 学习总结：
+1. 第二题多项式相加可以直接使用散列，定义结构体使用二路归并过于麻烦。
 
