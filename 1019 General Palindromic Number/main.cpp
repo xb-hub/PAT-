@@ -11,9 +11,7 @@ int main()
     {
         ans.push_back(n % b);
         n /= b;
-        cout << n << endl;
     }
-    // cout << "nnn";
     int left = 0, right = ans.size() - 1;
     bool flag = true;
     while (left < right)
