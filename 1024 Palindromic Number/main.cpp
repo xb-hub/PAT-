@@ -5,32 +5,35 @@ using namespace std;
 string add(string s, string re_s)
 {
     int carry = 0;
-    string ans_s = "";
     for(int i = 0; i < s.size(); i++)
     {
-        int temp = s[i] - '0' + re_s[i] - '0';
-        ans_s += to_string(temp % 10 + carry);
-        carry = temp / 10;
+        s[i] = s[i] + re_s[i] + carry - '0';
+        carry = 0;
+        if(s[i] > '9')
+        {
+            s[i] = s[i] - 10;
+            carry = 1;
+        }
     }
-    if(carry != 0)  ans_s += '1';
-    reverse(ans_s.begin(), ans_s.end());
-    return ans_s;
+    if(carry != 0)  s += '1';
+    return s;
 }
 
 int main()
 {
     int k, i;
-    string n;
+    string n, num;
     cin >> n >> k;
     for(i = 0; i < k; i++)
     {
-        string num = n;
+        num = n;
         reverse(num.begin(), num.end());
-        if(num == n || i == k)
+        if(num == n)
         {
             break;
         }
         n = add(n, num);
     }
+    reverse(n.begin(), n.end());
     cout << n << endl << i;
 }
