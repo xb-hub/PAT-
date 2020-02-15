@@ -3,10 +3,15 @@ PAT(Advancedc Level)Practice(英文)代码，
 开发环境vscode，
 为了方便所有源文件名取为main.cpp。:
 ## 编译方式
-linux和windows在命令行模式下输入命令:   
+linux和windows在命令行模式下输入命令: 
+- 编译 ： 
 ```
 * g++ main.cpp -o main
+* 或
+* cmake .
+* make
 ```
+- 执行：
 ```
 * ./main
 ```
