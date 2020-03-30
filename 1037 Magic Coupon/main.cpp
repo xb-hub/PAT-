@@ -5,55 +5,37 @@ using namespace std;
 
 bool cmp(int a, int b)
 {
-    return a > b;
+    return a * b < 0 ? a > b : abs(a) > abs(b);
 }
 
 int main()
 {
-    int c, p;
-    cin >> c >> p;
-    int b_c, b_p;
-    vector<int> l_c, l_p;
+    int c, p, count_c = 0, count_p = 0, sum = 0;
+    cin >> c;
+    vector<int> array_c(c);
     for(int i = 0; i < c; i++)
     {
-        cin >> b_c;
-        l_c.push_back(b_c);
+        cin >> array_c[i];
+        if(array_c[i] > 0)  count_c++;
     }
-    for(int j = 0; j < p; j++)
+    cin >> p;
+    vector<int> array_p(p);
+    for(int i = 0; i < p; i++)
     {
-        cin >> b_p;
-        l_p.push_back(b_p);
+        cin >> array_p[i];
+        if(array_p[i] > 0)  count_p++;
     }
-    sort(l_c.begin(), l_c.end(), cmp);
-    sort(l_p.begin(), l_p.end(), cmp);
-    if(c > p)
+    sort(array_c.begin(), array_c.end(), cmp);
+    sort(array_p.begin(), array_p.end(), cmp);
+    int count = min(count_c, count_p);
+    for(int i = 0; i < count; i++)
     {
-        for(vector<int>::iterator it = l_p.begin(); it != l_p.end(); it++)
-        {
-            if(*it < 0)
-            {
-                    l_p.insert(it, c - p, 0);
-            }
-        }
+        sum += array_c[i] * array_p[i];
     }
-    else
+    int tmp = min(array_c.size() - count_c, array_p.size() - count_p);
+    for(int i = 0; i < tmp; i++)
     {
-        for(vector<int>::iterator it = l_c.begin(); it != l_c.end(); it++)
-        {
-            if(*it < 0)
-            {
-                    l_c.insert(it, p - c, 0);
-            }
-        }
+        sum += array_c[count_c + i] * array_p[count_p + i];
     }
-    int size = max(c, p), ans = 0;
-    for(int i = 0; i < size; i++)
-    {
-        cout << l_c[i] << " ";
-    }
-    for(int i = 0; i < size; i++)
-    {
-        ans += l_c[i] * l_p[i];
-    }
-    cout << ans << endl;
+    cout << sum << endl;
 }
